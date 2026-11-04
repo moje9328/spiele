@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixelhafen – kostenlose Retro-Spiele</title>
+<meta name="description" content="Kostenlose Retro-Spiele direkt im Browser spielen oder als App aufs Handy holen.">
+<meta name="theme-color" content="#14151a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2015%2015%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%2314151a%22/%3E%3Cpath%20fill%3D%22%23f2b84b%22%20d%3D%22M6%202h1v1h-1zM7%202h1v1h-1zM8%202h1v1h-1zM6%203h1v1h-1zM8%203h1v1h-1zM6%204h1v1h-1zM7%204h1v1h-1zM8%204h1v1h-1zM7%205h1v1h-1zM5%206h1v1h-1zM6%206h1v1h-1zM7%206h1v1h-1zM8%206h1v1h-1zM9%206h1v1h-1zM7%207h1v1h-1zM2%208h1v1h-1zM7%208h1v1h-1zM12%208h1v1h-1zM2%209h1v1h-1zM3%209h1v1h-1zM7%209h1v1h-1zM11%209h1v1h-1zM12%209h1v1h-1zM2%2010h1v1h-1zM7%2010h1v1h-1zM12%2010h1v1h-1zM3%2011h1v1h-1zM4%2011h1v1h-1zM7%2011h1v1h-1zM10%2011h1v1h-1zM11%2011h1v1h-1zM5%2012h1v1h-1zM6%2012h1v1h-1zM7%2012h1v1h-1zM8%2012h1v1h-1zM9%2012h1v1h-1z%22/%3E%3C/svg%3E">
+<script>
+  // Merkt sich Hell oder Dunkel, falls der Besucher es einmal umgestellt hat
+  try {
+    const saved = localStorage.getItem('design');
+    if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+  } catch (error) {}
+</script>
+<style>
+  /* Schrift "Press Start 2P", Copyright 2012 The Press Start 2P Project Authors,
+     SIL Open Font License 1.1 (https://openfontlicense.org). Sie steckt direkt in dieser Datei. */
+  @font-face {
+    font-family: 'Press Start 2P';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(data:font/woff2;base64,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) format('woff2');
+  }
+
+  /* Dunkles Design: weiches Graphit statt reinem Schwarz, warmes Bernstein wie alte Monitore */
+  :root {
+    color-scheme: dark;
+    --bg: #14151a;
+    --surface: #1c1e25;
+    --surface-2: #272a33;
+    --line: #363a46;
+    --text: #ece9e2;
+    --muted: #b1b0ae;
+    --accent: #f2b84b;
+    --accent-edge: #a9781f;
+    --on-accent: #1d1505;
+    --retro: 'Press Start 2P', 'Courier New', monospace;
+    --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --radius: 18px;
+  }
+
+  /* Helles Design: warmes Papier, angelehnt an beige Spielkonsolen */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      color-scheme: light;
+      --bg: #f4f0e6;
+      --surface: #fdfbf5;
+      --surface-2: #ebe6d8;
+      --line: #d4cdbb;
+      --text: #24232a;
+      --muted: #5c5a63;
+      --accent: #8a5600;
+      --accent-edge: #b58628;
+    }
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f4f0e6;
+    --surface: #fdfbf5;
+    --surface-2: #ebe6d8;
+    --line: #d4cdbb;
+    --text: #24232a;
+    --muted: #5c5a63;
+    --accent: #8a5600;
+    --accent-edge: #b58628;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--text);
+    background: var(--bg);
+    font: 17px/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  .wrap { width: min(1160px, 100%); margin: 0 auto; padding: 0 16px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .pixel { font-family: var(--retro); font-weight: 400; }
+
+  /* Kopfzeile */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .wrap { display: flex; align-items: center; gap: 8px; min-height: 64px; }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: auto;
+    min-height: 44px;
+    text-decoration: none;
+  }
+  .brand svg { width: 26px; height: 26px; color: var(--accent); flex: none; }
+  .brand .pixel { font-size: 12px; text-transform: uppercase; }
+  nav { display: flex; gap: 2px; }
+  nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  nav a:hover { color: var(--text); background: var(--surface-2); }
+  .theme {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    color: var(--text);
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .theme:hover { background: var(--surface-2); }
+  .theme svg { width: 18px; height: 18px; }
+
+  /* Startbereich */
+  .hero { position: relative; padding: 72px 0 56px; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(var(--line) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+    -webkit-mask-image: linear-gradient(115deg, transparent 35%, #000 100%);
+    mask-image: linear-gradient(115deg, transparent 35%, #000 100%);
+  }
+  .hero .wrap { display: grid; gap: 36px; align-items: end; }
+  .eyebrow { margin: 0 0 18px; color: var(--accent); font-size: 11px; line-height: 1.8; }
+  h1 {
+    margin: 0;
+    font: 400 clamp(29px, 5.4vw, 58px)/1.2 var(--retro);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+  .tagline { max-width: 34em; margin: 22px 0 0; color: var(--muted); font-size: 20px; line-height: 1.5; }
+  .facts { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .facts li {
+    display: grid;
+    grid-template-columns: 10px 1fr;
+    column-gap: 14px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .facts li::before { content: ''; width: 10px; height: 10px; margin-top: 8px; background: var(--accent); }
+  .facts strong { font-weight: 650; }
+  .facts span { grid-column: 2; color: var(--muted); font-size: 15px; }
+
+  /* Abschnitte */
+  section { padding: 40px 0; scroll-margin-top: 64px; }
+  .level { margin: 0 0 10px; color: var(--accent); font-size: 10px; line-height: 1.8; }
+  h2 { margin: 0 0 24px; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.2; font-weight: 700; letter-spacing: -0.015em; }
+  section > p, .lead { color: var(--muted); }
+
+  /* Spiele-Karten */
+  .games { display: grid; gap: 18px; }
+  .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    align-items: center;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .card h3 { margin: 0; font: 400 clamp(19px, 2.4vw, 24px)/1.35 var(--retro); overflow-wrap: anywhere; }
+  .card p { margin: 14px 0 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
+  .tags li { padding: 3px 11px; color: var(--text); background: var(--surface-2); border-radius: 999px; font-size: 14px; }
+  .card .controls { color: var(--muted); font-size: 15px; }
+  .controls strong { color: var(--text); font-weight: 600; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+
+  .shots {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(140px, 200px);
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 2px 2px 8px;
+    border-radius: 12px;
+  }
+  .shots img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 500 / 820;
+    background: var(--surface-2);
+    border-radius: 12px;
+    scroll-snap-align: start;
+  }
+
+  /* Knöpfe: flach wie heute, mit der dicken Unterkante eines Arcade-Knopfs */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 10px 18px;
+    color: var(--text);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 3px 0 var(--line);
+    font: 600 16px/1.3 var(--body);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn:hover { filter: brightness(1.07); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--line); }
+  .btn.main {
+    flex: 1 1 100%;
+    color: var(--on-accent);
+    background: #f2b84b;
+    border-color: #f2b84b;
+    box-shadow: 0 3px 0 var(--accent-edge);
+  }
+  .btn.main:active { box-shadow: 0 1px 0 var(--accent-edge); }
+
+  .soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px 18px;
+    color: var(--muted);
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    font: 11px/1.8 var(--retro);
+    text-align: center;
+  }
+  .soon::after { content: ''; flex: none; width: 9px; height: 15px; background: var(--accent); animation: blink 1.8s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Installation und Fragen */
+  .duo { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 48px; align-items: start; }
+  .tabs { display: flex; gap: 4px; margin-top: 18px; padding: 4px; background: var(--surface-2); border-radius: 14px; }
+  .tab {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 44px;
+    padding: 8px 4px;
+    color: var(--muted);
+    background: transparent;
+    border: 0;
+    border-radius: 10px;
+    font: 600 15px/1.3 var(--body);
+    cursor: pointer;
+  }
+  .tab:hover { color: var(--text); }
+  .tab[aria-selected="true"] { color: var(--text); background: var(--surface); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); }
+  .tabpanel { margin-top: 12px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .tabpanel[hidden] { display: none; }
+  .tabpanel ol { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+  .tabpanel li { position: relative; margin: 0 0 16px; padding-left: 44px; counter-increment: step; }
+  .tabpanel li:last-child { margin-bottom: 0; }
+  .tabpanel li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    color: var(--on-accent);
+    background: #f2b84b;
+    border-radius: 8px;
+    font: 11px/1 var(--retro);
+  }
+  .tabpanel p { margin: 16px 0 0; padding-top: 14px; color: var(--muted); border-top: 1px solid var(--line); font-size: 15px; }
+
+  details { border-bottom: 1px solid var(--line); }
+  details:first-of-type { border-top: 1px solid var(--line); }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    min-height: 56px;
+    padding: 12px 0;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; flex: none; color: var(--accent); font: 14px/1 var(--retro); }
+  details[open] summary::after { content: '-'; }
+  details p { margin: 0; padding: 0 0 18px; color: var(--muted); }
+
+  footer { margin-top: 32px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-top: 28px; padding-bottom: 40px; }
+  footer .brand { margin: 0; }
+  #shareStatus { display: block; width: 100%; min-height: 24px; color: var(--muted); font-size: 15px; text-align: right; }
+  #shareStatus:empty { display: none; }
+
+  @media (min-width: 860px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }
+    .card.has-shots { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 36px; }
+    .duo { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  }
+
+  @media (max-width: 859px) {
+    body { font-size: 16px; }
+    .hero { padding: 44px 0 20px; }
+    .tagline { font-size: 18px; }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px; }
+    .facts li { grid-template-columns: 8px auto; padding: 7px 12px; column-gap: 8px; border-radius: 10px; font-size: 15px; }
+    .facts li::before { width: 8px; height: 8px; margin-top: 8px; }
+    .shots { grid-auto-columns: 125px; }
+    .facts span { display: none; }
+    section { padding: 28px 0; }
+    .card { padding: 20px; gap: 22px; }
+    .actions .btn { flex: 1 1 100%; }
+  }
+
+  @media (max-width: 519px) {
+    .topbar .brand .pixel { display: none; }
+    nav a { padding: 0 8px; font-size: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .soon::after { animation: none; }
+    .btn:active { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#start">
+      <svg viewBox="0 0 11 11" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM4 1h1v1h-1zM6 1h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM5 3h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1zM5 6h1v1h-1zM10 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM5 7h1v1h-1zM9 7h1v1h-1zM10 7h1v1h-1zM0 8h1v1h-1zM5 8h1v1h-1zM10 8h1v1h-1zM1 9h1v1h-1zM2 9h1v1h-1zM5 9h1v1h-1zM8 9h1v1h-1zM9 9h1v1h-1zM3 10h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1z"/></svg>
+      <span class="pixel js-name">Pixelhafen</span>
+    </a>
+    <nav aria-label="Seitennavigation">
+      <a href="#spiele">Spiele</a>
+      <a href="#installieren">Installieren</a>
+      <a href="#fragen">Fragen</a>
+    </nav>
+    <button class="theme" id="themeBtn" type="button" aria-label="Design wechseln">
+      <svg viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M2 0h4v1h1v1h1v4H7v1H6v1H2V7H1V6H0V2h1V1h1zm0 1v1H1v4h1v1h2V1z" fill-rule="evenodd"/></svg>
+    </button>
+  </div>
+</div>
+
+<main id="start">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow pixel">INSERT COIN? NICHT NÖTIG.</p>
+        <h1 class="js-name">Pixelhafen</h1>
+        <p class="tagline" id="siteTagline"></p>
+      </div>
+      <ul class="facts">
+        <li><strong>Kostenlos</strong><span>Jedes Spiel, jederzeit.</span></li>
+        <li><strong>Ohne Anmeldung</strong><span>Öffnen und loslegen.</span></li>
+        <li><strong>Ohne Werbung</strong><span>Nur du und das Spiel.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="spiele" aria-labelledby="spieleTitel">
+      <p class="level pixel">LEVEL 1</p>
+      <h2 id="spieleTitel">Spiele</h2>
+      <div class="games" id="games"></div>
+    </section>
+
+    <div class="duo">
+      <section id="installieren" aria-labelledby="installTitel">
+        <p class="level pixel">LEVEL 2</p>
+        <h2 id="installTitel">Als App installieren</h2>
+        <p class="lead">Einmal einrichten, danach startest du das Spiel über ein eigenes Symbol. Du brauchst keinen App Store.</p>
+        <div class="tabs" role="tablist" aria-label="Gerät auswählen">
+          <button class="tab" role="tab" id="tab-iphone" aria-controls="panel-iphone" type="button">iPhone</button>
+          <button class="tab" role="tab" id="tab-android" aria-controls="panel-android" type="button">Android</button>
+          <button class="tab" role="tab" id="tab-computer" aria-controls="panel-computer" type="button">Computer</button>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-iphone" aria-labelledby="tab-iphone">
+          <ol>
+            <li>Tippe beim Spiel auf <strong>Jetzt spielen</strong>. Am besten öffnest du es in <strong>Safari</strong>.</li>
+            <li>Tippe auf <strong>Teilen</strong> (Quadrat mit Pfeil nach oben).</li>
+            <li>Wähle <strong>Zum Home-Bildschirm</strong> und bestätige mit <strong>Hinzufügen</strong>.</li>
+          </ol>
+          <p>Keinen Ton? Dann schalte den Lautlos-Modus deines iPhones aus.</p>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-android" aria-labelledby="tab-android">
+          <ol>
+            <li>Tippe beim Spiel auf <strong>Jetzt spielen</strong>. Am besten öffnest du es in <strong>Chrome</strong>.</li>
+            <li>Tippe oben rechts auf die <strong>drei Punkte</strong>.</li>
+            <li>Wähle <strong>App installieren</strong> oder <strong>Zum Startbildschirm hinzufügen</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-computer" aria-labelledby="tab-computer">
+          <ol>
+            <li>Klicke beim Spiel auf <strong>Download für Computer</strong>.</li>
+            <li>Öffne die heruntergeladene Datei per Doppelklick. Das Spiel startet in deinem Browser.</li>
+          </ol>
+          <p>Du möchtest nichts herunterladen? Mit <strong>Jetzt spielen</strong> läuft das Spiel direkt im Browser.</p>
+        </div>
+      </section>
+
+      <section id="fragen" aria-labelledby="fragenTitel">
+        <p class="level pixel">LEVEL 3</p>
+        <h2 id="fragenTitel">Fragen</h2>
+        <details>
+          <summary>Kostet das etwas?</summary>
+          <p>Nein. Die Spiele sind kostenlos, ohne Anmeldung und ohne Werbung.</p>
+        </details>
+        <details>
+          <summary>Warum sind die Spiele nicht im App Store?</summary>
+          <p>Sie laufen als Web-Apps. Du holst sie direkt von dieser Seite auf dein Gerät und brauchst dafür keinen Store.</p>
+        </details>
+        <details>
+          <summary>Werden meine Punkte gespeichert?</summary>
+          <p>Ja, aber nur auf deinem Gerät und in deinem Browser. Sie werden nicht an uns oder andere geschickt.</p>
+        </details>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#start">
+      <svg viewBox="0 0 11 11" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM4 1h1v1h-1zM6 1h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM5 3h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1zM5 6h1v1h-1zM10 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM5 7h1v1h-1zM9 7h1v1h-1zM10 7h1v1h-1zM0 8h1v1h-1zM5 8h1v1h-1zM10 8h1v1h-1zM1 9h1v1h-1zM2 9h1v1h-1zM5 9h1v1h-1zM8 9h1v1h-1zM9 9h1v1h-1zM3 10h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1z"/></svg>
+      <span class="pixel js-name">Pixelhafen</span>
+    </a>
+    <button class="btn" id="shareBtn" type="button">Seite teilen</button>
+    <span id="shareStatus" role="status"></span>
+  </div>
+</footer>
+
+<script>
+// =====================================================================
+//  HIER KANNST DU ALLES ÄNDERN
+//  Name der Seite, Text und die Liste deiner Spiele.
+// =====================================================================
+
+const SEITE = {
+  name: 'Pixelhafen',
+  text: 'Kleine Spiele im Retro-Look. Direkt im Browser spielen oder als App aufs Handy holen.'
+};
+
+// Jeder Block zwischen { und } ist ein Spiel.
+// Für ein neues Spiel: unten die Vorlage kopieren, die // am Zeilenanfang entfernen und ausfüllen.
+// Wichtig: Links und Texte immer in 'Hochkommas', und nach jedem Spiel ein Komma.
+const SPIELE = [
+  {
+    titel: 'PINBALL',
+    beschreibung: 'Ein Flipper im Neon-Look mit Schwerkraft, Bumpern und Funkenregen. Wähle eins von vier Designs: Neon Retro, Mars-Invasion, Blitz & Feuer oder Kosmos-Arcade.',
+    merkmale: ['4 Designs', 'Multiball', 'Missionen', 'Retro-Sounds', 'Highscore'],
+    steuerung: 'Handy: linke und rechte Bildschirmseite tippen. Computer: A und D oder die Pfeiltasten, Leertaste zum Abschuss.',
+    spielen: 'https://moje9328.github.io/pinball/',
+    download: 'https://moje9328.github.io/pinball/index.html',
+    dateiname: 'pinball.html',
+    bilder: [
+      { datei: 'bilder/pinball-neon.jpg', text: 'Pinball im Design Neon Retro' },
+      { datei: 'bilder/pinball-mars.jpg', text: 'Pinball im Design Mars-Invasion' },
+      { datei: 'bilder/pinball-metal.jpg', text: 'Pinball im Design Blitz und Feuer' },
+      { datei: 'bilder/pinball-cosmic.jpg', text: 'Pinball im Design Kosmos-Arcade' }
+    ]
+  },
+
+  // VORLAGE FÜR DEIN NÄCHSTES SPIEL:
+  // {
+  //   titel: 'NAME DES SPIELS',
+  //   beschreibung: 'Ein oder zwei Sätze über das Spiel.',
+  //   merkmale: ['Merkmal 1', 'Merkmal 2'],
+  //   steuerung: 'So wird es gesteuert.',
+  //   spielen: 'https://moje9328.github.io/NAME/',
+  //   download: 'https://moje9328.github.io/NAME/index.html',
+  //   dateiname: 'name.html',
+  //   bilder: [
+  //     { datei: 'bilder/name.jpg', text: 'Kurze Bildbeschreibung' }
+  //   ]
+  // },
+];
+
+// Text für den Hinweis unter den Spielen. Mit '' verschwindet der Hinweis.
+const BALD_MEHR = 'WEITERE SPIELE FOLGEN';
+
+// =====================================================================
+//  AB HIER MUSST DU NORMALERWEISE NICHTS MEHR ÄNDERN
+// =====================================================================
+
+function element(tag, className, text) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text) el.textContent = text;
+  return el;
+}
+
+function showGames() {
+  const list = document.getElementById('games');
+
+  for (const spiel of SPIELE) {
+    const card = element('article', 'card');
+
+    const info = element('div');
+    info.append(element('h3', '', spiel.titel));
+    info.append(element('p', '', spiel.beschreibung));
+
+    if (spiel.merkmale && spiel.merkmale.length) {
+      const tags = element('ul', 'tags');
+      for (const merkmal of spiel.merkmale) tags.append(element('li', '', merkmal));
+      info.append(tags);
+    }
+
+    if (spiel.steuerung) {
+      const controls = element('p', 'controls');
+      controls.append(element('strong', '', 'Steuerung: '), spiel.steuerung);
+      info.append(controls);
+    }
+
+    const actions = element('div', 'actions');
+    const play = element('a', 'btn main', 'Jetzt spielen');
+    play.href = spiel.spielen;
+    actions.append(play);
+
+    const install = element('a', 'btn', 'Als App installieren');
+    install.href = '#installieren';
+    actions.append(install);
+
+    if (spiel.download) {
+      const download = element('a', 'btn', 'Download für Computer');
+      download.href = spiel.download;
+      download.setAttribute('download', spiel.dateiname || '');
+      actions.append(download);
+    }
+
+    info.append(actions);
+    card.append(info);
+
+    if (spiel.bilder && spiel.bilder.length) {
+      const shots = element('div', 'shots');
+      shots.tabIndex = 0;
+      shots.setAttribute('role', 'group');
+      shots.setAttribute('aria-label', 'Bilder aus ' + spiel.titel);
+      card.classList.add('has-shots');
+      for (const bild of spiel.bilder) {
+        const img = element('img');
+        img.src = bild.datei;
+        img.alt = bild.text || spiel.titel;
+        img.loading = 'lazy';
+        img.width = 500;
+        img.height = 820;
+        img.onerror = () => {              // Fehlt ein Bild, bleibt die Karte trotzdem ordentlich
+          img.remove();
+          if (!shots.children.length) {
+            shots.remove();
+            card.classList.remove('has-shots');
+          }
+        };
+        shots.append(img);
+      }
+      card.append(shots);
+    }
+
+    list.append(card);
+  }
+
+  if (BALD_MEHR) list.append(element('div', 'soon', BALD_MEHR));
+}
+
+// Zeigt passend zum Gerät zuerst die richtige Anleitung
+function detectDevice() {
+  const agent = navigator.userAgent;
+  const iPadAsMac = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+  if (/iPhone|iPad|iPod/.test(agent) || iPadAsMac) return 'iphone';
+  if (/Android/.test(agent)) return 'android';
+  return 'computer';
+}
+
+const DEVICES = ['iphone', 'android', 'computer'];
+
+function selectTab(device, moveFocus) {
+  for (const name of DEVICES) {
+    const tab = document.getElementById('tab-' + name);
+    const active = name === device;
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+    document.getElementById('panel-' + name).hidden = !active;
+    if (active && moveFocus) tab.focus();
+  }
+}
+
+function setupTabs() {
+  DEVICES.forEach((name, i) => {
+    const tab = document.getElementById('tab-' + name);
+    tab.addEventListener('click', () => selectTab(name));
+    tab.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const step = e.key === 'ArrowRight' ? 1 : DEVICES.length - 1;
+      selectTab(DEVICES[(i + step) % DEVICES.length], true);
+    });
+  });
+  selectTab(detectDevice());
+}
+
+async function shareSite() {
+  const status = document.getElementById('shareStatus');
+  const data = { title: SEITE.name, text: SEITE.text, url: location.href.split('#')[0] };
+  try {
+    if (navigator.share) {
+      await navigator.share(data);
+      return;
+    }
+    await navigator.clipboard.writeText(data.url);
+    status.textContent = 'Link kopiert!';
+  } catch (error) {
+    if (error.name === 'AbortError') return;   // Teilen wurde selbst abgebrochen
+    status.textContent = 'Kopiere einfach die Adresse oben im Browser.';
+  }
+}
+
+// Hell oder Dunkel umschalten. Ohne eigene Wahl folgt die Seite der Einstellung des Geräts.
+function currentTheme() {
+  return document.documentElement.dataset.theme
+    || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+}
+
+function showTheme() {
+  const theme = currentTheme();
+  document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f4f0e6' : '#14151a';
+  document.getElementById('themeBtn').setAttribute('aria-label', theme === 'light' ? 'Zum dunklen Design wechseln' : 'Zum hellen Design wechseln');
+}
+
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const theme = currentTheme() === 'light' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = theme;
+  try { localStorage.setItem('design', theme); } catch (error) {}
+  showTheme();
+});
+
+for (const el of document.querySelectorAll('.js-name')) el.textContent = SEITE.name;
+document.getElementById('siteTagline').textContent = SEITE.text;
+document.title = SEITE.name + ' – kostenlose Retro-Spiele';
+document.getElementById('shareBtn').addEventListener('click', shareSite);
+showTheme();
+showGames();
+setupTabs();
+</script>
+</body>
+</html>
