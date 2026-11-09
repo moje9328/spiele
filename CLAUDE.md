@@ -11,7 +11,7 @@ Diese Seite (`~/spiele-seite`, Repo `moje9328/spiele`) ist nur die **Karten-Übe
 | Spiele | `~/<name>-app/` – je ein eigenes Git-Repo `moje9328/<name>`, online über GitHub Pages (main, Ordner `/`) |
 | Online-Adresse | `https://moje9328.github.io/<name>/` |
 
-Bestehende Spiele: froschsprung, hafenflitzer, hafenhopser, hafenlotse, krabbenalarm, krabbenkrawall, orbitflipper, pinball, sonnenrutsch, steinbrecher, sternenwacht, wolkenhuepfer, wurmgrube.
+Bestehende Spiele: froschsprung, hafenflitzer, hafenhopser, hafenlotse, krabbenalarm, krabbenkrawall, orbitflipper, pinball, sonnenrutsch, containerstapler, steinbrecher, sternenwacht, wolkenhuepfer, wurmgrube.
 
 ## Aufbau eines Spiels
 
